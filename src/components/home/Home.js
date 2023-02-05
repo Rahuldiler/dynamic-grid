@@ -25,14 +25,41 @@ const Home = () => {
   const [showDuration, setShowDuration] = useState(false);
   const [dateRange, setDateRange] = useState();
 
+  let allDates = [];
+  gridData.forEach((item) => {
+    return allDates.push(item?.created_At);
+  });
+
+  // CALCULATE MAX DATE
+  var maxDate =
+    allDates.length === 0
+      ? ""
+      : allDates?.reduce(function (a, b) {
+          return a > b ? a : b;
+        });
+
+  // CALCULATE MIN DATE
+  var minDate =
+    allDates.length === 0
+      ? ""
+      : allDates?.reduce(function (a, b) {
+          return a < b ? a : b;
+        });
+
+  console.log("maxDate " + maxDate);
+  console.log("minDate " + minDate);
+
+  // SELECTED FROM DATE
   const firstDate = dateRange
     ? DateFormatter(dateRange[0])
     : DateFormatter(new Date("2022-Feb-05"));
+
+  // SELECTED TO DATE
   const lastDate = dateRange
     ? DateFormatter(dateRange[1])
     : DateFormatter(new Date());
 
-  // STATS DATA
+  // GET STATS DATA
   const getStatsData = async () => {
     const res = await axios.get(
       "https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticcount?fromdate=2022 -04-01&todate=2022-08-24&page=1&limit=10"
@@ -44,10 +71,14 @@ const Home = () => {
     }
   };
 
-  // GRID DATA
+  // GET GRID DATA
   const getGridData = async () => {
     const res = await axios.get(
-      `https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=${firstDate}&todate=${lastDate}&page=1&limit=${entryCount}`
+      `https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=${
+        dateRange ? dateRange[0] : "2022-01-01"
+      }&todate=${
+        dateRange ? dateRange[0] : new Date()
+      }&page=1&limit=${entryCount}`
     );
     try {
       setGridData(res.data?.data?.data);
@@ -152,7 +183,8 @@ const Home = () => {
                         allowPartialRange={true}
                         selectRange={true}
                         defaultView={`month`}
-                        maxDate={new Date()}
+                        maxDate={new Date(maxDate)}
+                        minDate={new Date(minDate)}
                         className="custom__calendar"
                       />
                     </div>
@@ -165,6 +197,7 @@ const Home = () => {
             gridData={gridData}
             firstDate={firstDate}
             lastDate={lastDate}
+            entryCount={entryCount}
           />
         </div>
       </div>
