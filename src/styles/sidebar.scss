@@ -1,0 +1,101 @@
+@import "colors";
+
+.open__menu__icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: #fff;
+  fill: #fff;
+  font-size: 25px;
+  z-index: 1;
+  @media screen and (min-width: 991px) {
+    display: none !important;
+  }
+}
+
+.sidebar__main {
+  width: 270px;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: $sectionBg;
+  height: fit-content;
+  z-index: 999;
+  transition: 0.4s;
+  @media screen and (max-width: 991px) {
+    position: absolute;
+    transform: translateX(-270px);
+  }
+
+  &.sidebarActive {
+    transform: translateX(0);
+    z-index: 999;
+    box-shadow: 0 0px 6px 0px #5c5c5c;
+  }
+
+  > .profile__user__logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > .user_detail {
+      display: flex;
+      align-items: center;
+
+      > .pro__pic {
+        margin-right: 7px;
+        > img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+      }
+      > .user__name {
+        font-size: 25px;
+        font-weight: 700;
+        color: #fff;
+      }
+    }
+    > .icon {
+      > svg {
+        color: $hoverBg;
+        fill: $hoverBg;
+        font-size: 20px;
+      }
+      @media screen and (min-width: 991px) {
+        display: none !important;
+      }
+    }
+  }
+
+  > .sidebar__links {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 10px 0;
+    padding: 10px;
+    transition: 0.4s;
+
+    &.active {
+      background-color: $hoverBg;
+    }
+
+    &:hover {
+      background-color: $hoverBg;
+    }
+
+    > .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > svg {
+        color: #fff;
+        fill: #fff;
+        font-size: 20px;
+        margin-right: 7px;
+      }
+    }
+  }
+}
