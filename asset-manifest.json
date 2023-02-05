@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/dynamic-grid/static/css/main.772fc17a.css",
+    "main.js": "/dynamic-grid/static/js/main.0eb69d8f.js",
+    "static/media/profile.jpg": "/dynamic-grid/static/media/profile.e69af7160f1cc73cb250.jpg",
+    "index.html": "/dynamic-grid/index.html",
+    "main.772fc17a.css.map": "/dynamic-grid/static/css/main.772fc17a.css.map",
+    "main.0eb69d8f.js.map": "/dynamic-grid/static/js/main.0eb69d8f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.772fc17a.css",
+    "static/js/main.0eb69d8f.js"
+  ]
+}
